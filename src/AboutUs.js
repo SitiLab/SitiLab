@@ -29,7 +29,7 @@ const AboutUs = () => {
     {
       name: "Liam Cominotti",
       role: "Lead Designer",
-      image: "/api/placeholder/200/200",
+      image: "https://cdn.sitilab.ch/landing-page/liam-cominotti.png",
     }
   ];
 
