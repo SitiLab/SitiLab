@@ -22,11 +22,6 @@ const AboutUs = () => {
 
   const teamMembers = [
     {
-      name: "Yuki",
-      role: "Cane Autistico",
-      image: "/api/placeholder/200/200",
-    },
-    {
       name: "Lorenzo Cingano",
       role: "CEO & Founder",
       image: "/api/placeholder/200/200",
@@ -35,17 +30,7 @@ const AboutUs = () => {
       name: "Liam Cominotti",
       role: "Lead Designer",
       image: "/api/placeholder/200/200",
-    },
-    {
-      name: "Giuseppe Verdi",
-      role: "Musicista Sordo",
-      image: "/api/placeholder/200/200",
-    },
-    {
-      name: "Marco Arnaboldi",
-      role: "Pulitore Cessi",
-      image: "/api/placeholder/200/200",
-    },
+    }
   ];
 
   return (
