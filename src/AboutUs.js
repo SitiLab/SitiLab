@@ -24,7 +24,7 @@ const AboutUs = () => {
     {
       name: "Lorenzo Cingano",
       role: "CEO & Founder",
-      image: "/api/placeholder/200/200",
+      image: ""
     },
     {
       name: "Liam Cominotti",
@@ -104,7 +104,7 @@ const AboutUs = () => {
                 whileHover={{ scale: 1.02 }}
                 transition={spring}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 opacity-80" />
+                {!member.image? <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 opacity-80" /> : undefined}
                 <img
                   src={member.image}
                   alt={member.name}
