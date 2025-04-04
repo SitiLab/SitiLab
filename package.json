@@ -5,11 +5,12 @@
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
+    "framer-motion": "11.11.17",
+    "lucide-react": "0.460.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-scripts": "^5.0.0",
-    "lucide-react": "0.460.0",
-    "framer-motion": "11.11.17"
+    "serve": "^14.2.4"
   },
   "devDependencies": {
     "@types/react": "18.2.38",
