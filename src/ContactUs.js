@@ -497,7 +497,7 @@ const ContactUs = () => {
               }
             : { ...prevData, [name]: value };
 
-        // Clear error when field is changed
+        
         setErrors((prev) => ({ ...prev, [name]: "" }));
         return newData;
       });
@@ -508,7 +508,7 @@ const ContactUs = () => {
   const handleSubmit = (e) => {
     if (validateStep(4)) {
       console.log("Form submitted:", formData);
-      // Handle form submission
+      
     }
   };
 

@@ -56,7 +56,7 @@ const AboutUs = () => {
           </p>
         </motion.div>
 
-        {/* Values */}
+        {}
         <motion.div
           className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
           initial={{ opacity: 0, y: 20 }}
@@ -84,7 +84,7 @@ const AboutUs = () => {
           ))}
         </motion.div>
 
-        {/* Team */}
+        {}
         <motion.div
           className="grid md:grid-cols-3 gap-8"
           initial={{ opacity: 0, y: 20 }}
