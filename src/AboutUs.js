@@ -24,7 +24,7 @@ const AboutUs = () => {
     {
       name: "Lorenzo Cingano",
       role: "CEO & Founder",
-      image: ""
+      image: "https://cdn.sitilab.ch/landing-page/lorenzo-cingano.png"
     },
     {
       name: "Liam Cominotti",
