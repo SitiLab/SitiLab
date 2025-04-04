@@ -416,33 +416,70 @@ const Step4 = React.memo(({ formData, handleChange, errors }) => (
   </motion.div>
 ));
 
-const StepIndicator = React.memo(({ step }) => (
-  <div className="flex justify-between mb-8">
-    {[1, 2, 3, 4].map((i) => (
-      <motion.div
-        key={i}
-        className="flex flex-col items-center"
-        animate={{ opacity: step >= i ? 1 : 0.5 }}
-      >
-        <motion.div
-          className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${
-            step >= i ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
-          }`}
-          whileHover={{ scale: 1.1 }}
-          transition={spring}
-        >
-          {step > i ? <Check size={20} /> : i}
-        </motion.div>
-        <span className="text-sm text-gray-600">
-          {i === 1 && "Info Personali"}
-          {i === 2 && "Info Progetto"}
-          {i === 3 && "Dettagli Tecnici"}
-          {i === 4 && "Requisiti"}
-        </span>
-      </motion.div>
-    ))}
-  </div>
-));
+const StepIndicator = React.memo(({ step }) => {
+  const totalSteps = 4;
+
+  return (
+      <div className="mb-8">
+        {/* Main container with relative positioning */}
+        <div className="relative">
+          {/* Step circles with labels */}
+          <div className="flex justify-between items-center relative mb-12">
+            {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="flex flex-col items-center relative z-10">
+                  {/* Circle */}
+                  <motion.div
+                      className={`w-12 h-12 rounded-full flex items-center justify-center ${
+                          i < step
+                              ? "bg-blue-600 text-white"
+                              : i === step
+                                  ? "bg-blue-600 text-white"
+                                  : i === step + 1
+                                      ? "bg-white border-2 border-blue-400 text-blue-600"
+                                      : "bg-gray-200 text-gray-500"
+                      }`}
+                      whileHover={{ scale: 1.05 }}
+                      transition={spring}
+                  >
+                    {i < step ? <Check size={20} /> : i}
+                  </motion.div>
+
+                  {/* Label */}
+                  <span className="text-sm mt-2 text-center text-gray-600">
+                {i === 1 && "Info Personali"}
+                    {i === 2 && "Info Progetto"}
+                    {i === 3 && "Dettagli Tecnici"}
+                    {i === 4 && "Requisiti"}
+              </span>
+                </div>
+            ))}
+
+            {/* Progress bar - now absolutely positioned relative to the flex container */}
+            <div className="absolute top-6 left-0 w-full z-0">
+              {/* Background track */}
+              <div className="absolute h-1 bg-gray-200 left-0 right-0" />
+
+              {/* Active progress - width calculated based on current step */}
+              <motion.div
+                  className="absolute h-1 bg-blue-600"
+                  initial={{ width: "0%" }}
+                  animate={{
+                    width: step === 1
+                        ? "0%"
+                        : step === 2
+                            ? "33.33%"
+                            : step === 3
+                                ? "66.66%"
+                                : "100%"
+                  }}
+                  transition={{ duration: 0.3 }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+  );
+});
 
 const ContactUs = () => {
   const [step, setStep] = useState(1);
@@ -458,7 +495,7 @@ const ContactUs = () => {
     features: [],
     design: "",
     description: "",
-    goalsgoals: "",
+    goals: "",
     competitors: "",
     references: "",
   });
