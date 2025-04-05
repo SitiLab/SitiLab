@@ -81,7 +81,7 @@ const Services = () => {
   return (
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {}
+
           <motion.div
               className="text-center max-w-3xl mx-auto mb-16"
               initial={{ opacity: 0, y: 20 }}
@@ -96,12 +96,11 @@ const Services = () => {
             </span>
             </h2>
             <p className="text-lg text-gray-600">
-              Offriamo soluzioni complete per la tua presenza digitale, dallo
-              sviluppo alla promozione online.
+              Abbiamo tutte le risposte per gestire la tua presenza online in modo completo: dalla creazione al marketing digitale.
             </p>
           </motion.div>
 
-          {}
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {services.map((service, index) => (
                 <motion.div
@@ -113,7 +112,7 @@ const Services = () => {
                     transition={{ duration: 0.3, delay: index * 0.05 }}
                     whileHover={{ y: -5 }}
                 >
-                  {}
+
                   <motion.div
                       className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 mb-6"
                       whileHover={{ scale: 1.1, rotate: 5 }}
@@ -122,11 +121,11 @@ const Services = () => {
                     {service.icon}
                   </motion.div>
 
-                  {}
+
                   <h3 className="text-xl font-bold mb-4">{service.title}</h3>
                   <p className="text-gray-600 mb-6">{service.description}</p>
 
-                  {}
+
                   <div className="grid grid-cols-2 gap-2 mb-6">
                     {service.features.map((feature, idx) => (
                         <motion.span
@@ -143,7 +142,7 @@ const Services = () => {
                     ))}
                   </div>
 
-                  {}
+
                   <motion.button
                       className="text-blue-600 font-medium inline-flex items-center gap-2 group"
                       whileHover={{ x: 5 }}
@@ -161,7 +160,7 @@ const Services = () => {
           </div>
         </div>
 
-        {}
+
         <ServiceModal
             isOpen={isModalOpen}
             onClose={closeServiceModal}

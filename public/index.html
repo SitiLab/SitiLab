@@ -12,6 +12,27 @@
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#000000" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                primary: '#1E40AF',    // Puoi sostituire con il tuo colore primario
+                secondary: '#3B82F6',  // Colore secondario
+                accent: '#10B981',     // Colore accent per call-to-action
+                light: '#EFF6FF',      // Versione light
+                dark: '#1E3A8A',       // Versione dark
+              }
+            },
+            fontFamily: {
+              'heading': ['Poppins', 'sans-serif'],
+              'body': ['Montserrat', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
     <title>SitiLab</title>
     <style>
       * {

@@ -130,7 +130,7 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
                     onClick={onClose}
                 >
                     <div className="flex min-h-screen items-center justify-center p-4">
-                        {}
+
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 0.5 }}
@@ -139,7 +139,7 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
                             onClick={onClose}
                         />
 
-                        {}
+
                         <motion.div
                             initial={{ scale: 0.9, opacity: 0, y: 20 }}
                             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -148,7 +148,7 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
                             className="bg-white rounded-2xl shadow-2xl w-full max-w-3xl mx-auto z-10 overflow-hidden"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {}
+
                             <div className="relative bg-blue-50 p-6">
                                 <div className="flex justify-between items-center">
                                     <div className="flex items-center gap-4">
@@ -168,11 +168,11 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
                                 </div>
                             </div>
 
-                            {}
+
                             <div className="p-6">
                                 <p className="text-gray-700 text-lg mb-8">{service.description}</p>
 
-                                {}
+
                                 <div className="mb-8">
                                     <h4 className="font-bold text-lg mb-3">Tecnologie</h4>
                                     <div className="flex flex-wrap gap-2">
@@ -191,7 +191,7 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
                                     </div>
                                 </div>
 
-                                {}
+
                                 <div className="mb-8">
                                     <h4 className="font-bold text-lg mb-3">Benefici</h4>
                                     <ul className="space-y-2">
@@ -210,7 +210,7 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
                                     </ul>
                                 </div>
 
-                                {}
+
                                 <div>
                                     <h4 className="font-bold text-lg mb-3">Il Nostro Processo</h4>
                                     <ol className="space-y-4">
@@ -232,7 +232,7 @@ const ServiceModal = ({ isOpen, onClose, service }) => {
                                 </div>
                             </div>
 
-                            {}
+
                             <div className="p-6 bg-gray-50 flex justify-end">
                                 <motion.button
                                     className="px-6 py-3 bg-blue-600 text-white rounded-full font-medium shadow-lg"

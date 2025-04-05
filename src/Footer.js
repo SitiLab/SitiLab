@@ -63,7 +63,7 @@ const Footer = () => {
       <footer id="footer" className="bg-gradient-to-br from-blue-50 to-white pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {}
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +86,7 @@ const Footer = () => {
               </p>
             </motion.div>
 
-            {}
+
             {linkGroups.map((group, idx) => (
                 <motion.div
                     key={group.title}
@@ -118,7 +118,7 @@ const Footer = () => {
                 </motion.div>
             ))}
 
-            {}
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -148,7 +148,7 @@ const Footer = () => {
             </motion.div>
           </div>
 
-          {}
+
           <motion.div
               className="mt-16 pt-8 border-t border-gray-200 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0"
               initial={{ opacity: 0 }}

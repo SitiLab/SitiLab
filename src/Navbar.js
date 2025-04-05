@@ -149,7 +149,7 @@ const Navbar = () => {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {}
+
             <motion.div
                 className="flex-shrink-0"
                 whileHover={{ scale: 1.05 }}
@@ -169,7 +169,7 @@ const Navbar = () => {
               </a>
             </motion.div>
 
-            {}
+
             <div className="hidden lg:flex items-center space-x-8">
               <motion.a
                   href="#"
@@ -184,7 +184,7 @@ const Navbar = () => {
                 Home
               </motion.a>
 
-              {}
+
               <div className="relative">
                 <motion.button
                     onClick={() =>
@@ -244,7 +244,7 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              {}
+
               <div className="relative">
                 <motion.button
                     onClick={() =>
@@ -331,7 +331,7 @@ const Navbar = () => {
               </motion.button>
             </div>
 
-            {}
+
             <motion.button
                 className="lg:hidden text-gray-700 focus:outline-none"
                 onClick={() => setIsOpen(!isOpen)}
@@ -344,7 +344,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {}
+
         <AnimatePresence>
           {isOpen && (
               <motion.div
@@ -355,7 +355,7 @@ const Navbar = () => {
                   className="lg:hidden bg-white border-t border-gray-200 shadow-lg overflow-hidden"
               >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-4">
-                  {}
+
                   <motion.a
                       href="#"
                       onClick={(e) => {
@@ -370,7 +370,7 @@ const Navbar = () => {
                     Home
                   </motion.a>
 
-                  {}
+
                   <div className="space-y-2">
                     <motion.button
                         onClick={() =>
@@ -425,7 +425,7 @@ const Navbar = () => {
                     </AnimatePresence>
                   </div>
 
-                  {}
+
                   <div className="space-y-2">
                     <motion.button
                         onClick={() =>
@@ -480,7 +480,7 @@ const Navbar = () => {
                     </AnimatePresence>
                   </div>
 
-                  {}
+
                   <div className="px-3 pt-4 space-y-2">
                     <motion.button
                         onClick={() => {
