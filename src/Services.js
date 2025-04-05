@@ -26,7 +26,7 @@ const Services = () => {
       icon: <Code size={24} />,
       title: "Sviluppo Web",
       description:
-          "Sviluppiamo siti web e applicazioni personalizzate utilizzando le tecnologie più moderne e performanti.",
+          "Diamo vita a siti web e applicazioni su misura con strumenti moderni che garantiscono risultati concreti.",
       features: ["React", "Next.js", "Node.js"],
     },
     {

@@ -57,8 +57,9 @@ const Hero = () => {
                         animate={{opacity: 1, y: 0}}
                         transition={{duration: 0.8, delay: 0.4}}
                     >
-                        Creiamo e sviluppiamo siti web su misura che supportano la tua crescita online. Dalla
-                        progettazione all'esecuzione pratica ti assistiamo durante tutte le fasi del progetto.
+                        Prendiamo le tue sfide digitali e le trasformiamo in concrete possibilità di successo. Dall'idea
+                        alla realizzazione, siamo al tuo fianco in ogni momento con soluzioni web pensate su di te che
+                        danno una spinta reale al tuo business.
                     </motion.p>
 
                     <motion.div
