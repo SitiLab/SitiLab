@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Users, Lightbulb, Code, Target } from "lucide-react";
+import { Users, Lightbulb, Code, Target, PlusCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { staffApi } from "./api";
 
@@ -34,13 +34,12 @@ const AboutUs = () => {
 
   const values = [
     {
-      icon: <Lightbulb />,
       value: "Innovazione",
       label: "Soluzioni all'avanguardia",
     },
-    { icon: <Code />, value: "Competenza", label: "Tecnologie moderne" },
-    { icon: <Target />, value: "Obiettivi", label: "Risultati concreti" },
-    { icon: <Users />, value: "Collaborazione", label: "Approccio personale" },
+    { value: "Competenza", label: "Tecnologie moderne" },
+    { value: "Obiettivi", label: "Risultati concreti" },
+    { value: "Collaborazione", label: "Approccio personale" },
   ];
 
   return (
@@ -66,31 +65,34 @@ const AboutUs = () => {
             </p>
           </motion.div>
 
+          {/* Sezione valori ridisegnata con stile elegante */}
           <motion.div
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-20"
+              className="mb-20 max-w-4xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
           >
-            {values.map((value, index) => (
-                <motion.div
-                    key={value.label}
-                    className="text-center"
-                    whileHover={{ scale: 1.05 }}
-                    transition={spring}
-                >
-                  <motion.div
-                      className="w-12 h-12 mx-auto mb-4 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600"
-                      whileHover={{ rotate: 5 }}
-                      transition={spring}
-                  >
-                    {value.icon}
-                  </motion.div>
-                  <div className="text-xl font-bold mb-2">{value.value}</div>
-                  <div className="text-gray-600">{value.label}</div>
-                </motion.div>
-            ))}
+            <div className="bg-gradient-to-r from-blue-50 to-white p-8 rounded-xl border-l-4 border-blue-500 shadow-sm">
+              <h3 className="text-lg font-medium text-blue-800 mb-4">I nostri valori fondamentali</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {values.map((value, index) => (
+                    <motion.div
+                        key={value.value}
+                        className="flex items-baseline"
+                        whileHover={{ x: 5 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                    <span className="text-blue-600 font-bold text-lg mr-2">
+                      {value.value}
+                    </span>
+                      <span className="text-gray-600 text-sm">
+                      — {value.label}
+                    </span>
+                    </motion.div>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           {/* Loading and error states */}
@@ -113,7 +115,7 @@ const AboutUs = () => {
               </div>
           )}
 
-          {/* Team members grid */}
+          {/* Team members grid with open positions card */}
           {!loading && !error && (
               <motion.div
                   className="grid md:grid-cols-3 gap-8"
@@ -155,6 +157,31 @@ const AboutUs = () => {
                       )}
                     </motion.div>
                 ))}
+
+                {/* Open positions card */}
+                <motion.div
+                    className="text-center flex flex-col items-center justify-center"
+                    whileHover={{ y: -5 }}
+                    transition={spring}
+                >
+                  <motion.div
+                      className="w-48 h-48 mx-auto mb-6 relative rounded-xl overflow-hidden flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-50 border-2 border-dashed border-blue-300"
+                      whileHover={{ scale: 1.02 }}
+                      transition={spring}
+                  >
+                    <div className="text-blue-500 mb-2">
+                      <PlusCircle size={48} strokeWidth={1.5} />
+                    </div>
+                  </motion.div>
+                  <h3 className="text-xl font-bold mb-2">Unisciti al Team</h3>
+                  <p className="text-gray-600 mb-4">Stiamo cercando nuovi talenti</p>
+                  <a
+                      href="https://www.linkedin.com/company/sitilab-ch/"
+                      className="inline-block px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                  >
+                    Posizioni Aperte
+                  </a>
+                </motion.div>
               </motion.div>
           )}
 
