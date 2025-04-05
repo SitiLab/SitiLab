@@ -19,8 +19,14 @@ class ContactApi extends BaseApi {
      * @param {Object} projectData - Project details for quote
      * @returns {Promise<Object>} - Response with quote reference number
      */
-    async requestQuote(projectData) {
-        return this.post('/contact/quotes', projectData);
+    async requestQuote(contactFormData, projectRequestData) {
+        // The backend expects a DTO with contactForm and projectRequest properties
+        const requestBody = {
+            contactForm: contactFormData,
+            projectRequest: projectRequestData
+        };
+
+        return this.post('/contact/quotes', requestBody);
     }
 
     /**

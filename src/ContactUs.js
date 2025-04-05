@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { Send, ArrowRight, ArrowLeft, Check, AlertCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { contactApi } from "./api";
 
 const spring = { type: "spring", stiffness: 400, damping: 30 };
 
@@ -497,10 +498,13 @@ const ContactUs = () => {
     description: "",
     goals: "",
     competitors: "",
-    references: "",
+    referenceLinks: "",
   });
 
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
 
   const validateStep = (stepNumber) => {
     const fieldsToValidate = {
@@ -521,31 +525,90 @@ const ContactUs = () => {
   };
 
   const handleChange = useMemo(
-    () => (e) => {
-      const { name, value, type, checked } = e.target;
-      setFormData((prevData) => {
-        const newData =
-          type === "checkbox"
-            ? {
-                ...prevData,
-                [name]: checked
-                  ? [...prevData[name], value]
-                  : prevData[name].filter((item) => item !== value),
-              }
-            : { ...prevData, [name]: value };
+      () => (e) => {
+        const { name, value, type, checked } = e.target;
+        setFormData((prevData) => {
+          const newData =
+              type === "checkbox"
+                  ? {
+                    ...prevData,
+                    [name]: checked
+                        ? [...prevData[name], value]
+                        : prevData[name].filter((item) => item !== value),
+                  }
+                  : { ...prevData, [name]: value };
 
-        
-        setErrors((prev) => ({ ...prev, [name]: "" }));
-        return newData;
-      });
-    },
-    []
+          setErrors((prev) => ({ ...prev, [name]: "" }));
+          return newData;
+        });
+      },
+      []
   );
 
-  const handleSubmit = (e) => {
-    if (validateStep(4)) {
-      console.log("Form submitted:", formData);
-      
+  const handleSubmit = async (e) => {
+    if (!validateStep(4)) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      // Create contactForm and projectRequest objects
+      const contactFormData = {
+        name: formData.name,
+        email: formData.email,
+        company: formData.company || null,
+        role: formData.role || null,
+        projectType: formData.projectType,
+        budget: formData.budget,
+        deadline: formData.deadline,
+        description: formData.description,
+        goals: formData.goals,
+        competitors: formData.competitors || null,
+        referenceLinks: formData.referenceLinks || null
+      };
+
+      const projectRequestData = {
+        platforms: formData.platform,
+        features: formData.features,
+        design: formData.design
+      };
+
+      // Call the API
+      const response = await contactApi.requestQuote(contactFormData, projectRequestData);
+
+      console.log("Form submitted successfully:", response);
+      setSubmitSuccess(true);
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        role: "",
+        projectType: "",
+        budget: "",
+        deadline: "",
+        platform: [],
+        features: [],
+        design: "",
+        description: "",
+        goals: "",
+        competitors: "",
+        referenceLinks: "",
+      });
+
+      // Go back to step 1
+      setStep(1);
+
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setSubmitError(
+          err.message || "Si è verificato un errore durante l'invio del modulo"
+      );
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -559,111 +622,158 @@ const ContactUs = () => {
     switch (step) {
       case 1:
         return (
-          <Step1
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-          />
+            <Step1
+                formData={formData}
+                handleChange={handleChange}
+                errors={errors}
+            />
         );
       case 2:
         return (
-          <Step2
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-          />
+            <Step2
+                formData={formData}
+                handleChange={handleChange}
+                errors={errors}
+            />
         );
       case 3:
         return (
-          <Step3
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-          />
+            <Step3
+                formData={formData}
+                handleChange={handleChange}
+                errors={errors}
+            />
         );
       case 4:
         return (
-          <Step4
-            formData={formData}
-            handleChange={handleChange}
-            errors={errors}
-          />
+            <Step4
+                formData={formData}
+                handleChange={handleChange}
+                errors={errors}
+            />
         );
       default:
         return null;
     }
-  }, [step, formData, handleChange]);
+  }, [step, formData, handleChange, errors]);
 
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-        >
-          <h2 className="text-4xl font-bold mb-6">
-            Iniziamo a{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
+      <section className="py-24 bg-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4 }}
+          >
+            <h2 className="text-4xl font-bold mb-6">
+              Iniziamo a{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">
               Creare
             </span>
-          </h2>
-          <p className="text-lg text-gray-600">
-            Raccontaci del tuo progetto e ti contatteremo per una consulenza
-            gratuita
-          </p>
-        </motion.div>
-
-        <form onSubmit={handleSubmit}>
-          <StepIndicator step={step} />
-          <AnimatePresence mode="wait">
-            {React.cloneElement(currentStep, { errors })}
-          </AnimatePresence>
-
-          <motion.div className="flex justify-between mt-8">
-            {step > 1 && (
-              <motion.button
-                type="button"
-                className="flex items-center gap-2 px-6 py-2 text-blue-600 rounded-lg"
-                onClick={() => setStep((prev) => prev - 1)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                transition={spring}
-              >
-                <ArrowLeft size={20} />
-                Indietro
-              </motion.button>
-            )}
-
-            <motion.button
-              type="button"
-              className="ml-auto flex items-center gap-2 px-8 py-3 rounded-full font-medium shadow-lg bg-blue-600 text-white"
-              onClick={() => (step === 4 ? handleSubmit() : handleNext())}
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 20px 25px -5px rgba(0,0,0,0.1)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              transition={spring}
-            >
-              {step === 4 ? (
-                <>
-                  Invia Richiesta
-                  <Send size={18} />
-                </>
-              ) : (
-                <>
-                  Continua
-                  <ArrowRight size={18} />
-                </>
-              )}
-            </motion.button>
+            </h2>
+            <p className="text-lg text-gray-600">
+              Raccontaci del tuo progetto e ti contatteremo per una consulenza
+              gratuita
+            </p>
           </motion.div>
-        </form>
-      </div>
-    </section>
+
+          {submitSuccess && (
+              <motion.div
+                  className="bg-green-50 border border-green-200 text-green-800 rounded-lg p-6 mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+              >
+                <div className="flex items-center mb-3">
+                  <Check size={24} className="text-green-600 mr-2" />
+                  <h3 className="text-xl font-bold">Richiesta inviata con successo!</h3>
+                </div>
+                <p>Grazie per averci contattato. Un membro del nostro team ti risponderà al più presto.</p>
+              </motion.div>
+          )}
+
+          {submitError && (
+              <motion.div
+                  className="bg-red-50 border border-red-200 text-red-800 rounded-lg p-6 mb-8"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4 }}
+              >
+                <div className="flex items-center mb-3">
+                  <AlertCircle size={24} className="text-red-600 mr-2" />
+                  <h3 className="text-xl font-bold">Si è verificato un errore</h3>
+                </div>
+                <p>{submitError}</p>
+                <motion.button
+                    className="mt-3 text-red-600 font-medium"
+                    whileHover={{ x: 5 }}
+                    transition={spring}
+                    onClick={() => setSubmitError(null)}
+                >
+                  Riprova
+                </motion.button>
+              </motion.div>
+          )}
+
+          <form onSubmit={handleSubmit}>
+            <StepIndicator step={step} />
+            <AnimatePresence mode="wait">
+              {React.cloneElement(currentStep, { errors })}
+            </AnimatePresence>
+
+            <motion.div className="flex justify-between mt-8">
+              {step > 1 && (
+                  <motion.button
+                      type="button"
+                      className="flex items-center gap-2 px-6 py-2 text-blue-600 rounded-lg"
+                      onClick={() => setStep((prev) => prev - 1)}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={spring}
+                      disabled={isSubmitting}
+                  >
+                    <ArrowLeft size={20} />
+                    Indietro
+                  </motion.button>
+              )}
+
+              <motion.button
+                  type="button"
+                  className={`ml-auto flex items-center gap-2 px-8 py-3 rounded-full font-medium shadow-lg bg-blue-600 text-white ${
+                      isSubmitting ? "opacity-70 cursor-not-allowed" : ""
+                  }`}
+                  onClick={() => (step === 4 ? handleSubmit : handleNext)()}
+                  whileHover={{
+                    scale: isSubmitting ? 1 : 1.05,
+                    boxShadow: isSubmitting ? "" : "0 20px 25px -5px rgba(0,0,0,0.1)",
+                  }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.95 }}
+                  transition={spring}
+                  disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                    <>
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                      Invio in corso...
+                    </>
+                ) : step === 4 ? (
+                    <>
+                      Invia Richiesta
+                      <Send size={18} />
+                    </>
+                ) : (
+                    <>
+                      Continua
+                      <ArrowRight size={18} />
+                    </>
+                )}
+              </motion.button>
+            </motion.div>
+          </form>
+        </div>
+      </section>
   );
 };
 
