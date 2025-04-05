@@ -1,7 +1,3 @@
-// src/api/baseApi.js
-/**
- * Base API class for handling common behaviors across all API calls
- */
 class BaseApi {
     constructor() {
         this.baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:8080/api/v1';
@@ -11,17 +7,11 @@ class BaseApi {
         };
     }
 
-    /**
-     * Add authorization headers if user is authenticated
-     */
     getAuthHeaders() {
         const token = localStorage.getItem('auth_token');
         return token ? { 'Authorization': `Bearer ${token}` } : {};
     }
 
-    /**
-     * Handle API responses and errors consistently
-     */
     async handleResponse(response) {
         if (!response.ok) {
             const errorData = await response.json().catch(() => ({}));
@@ -35,9 +25,6 @@ class BaseApi {
         return response.json();
     }
 
-    /**
-     * Common GET request method
-     */
     async get(endpoint, params = {}) {
         const url = new URL(`${this.baseUrl}${endpoint}`);
 
@@ -63,9 +50,6 @@ class BaseApi {
         }
     }
 
-    /**
-     * Common POST request method
-     */
     async post(endpoint, data = {}) {
         try {
             const response = await fetch(`${this.baseUrl}${endpoint}`, {
@@ -84,9 +68,6 @@ class BaseApi {
         }
     }
 
-    /**
-     * Common PUT request method
-     */
     async put(endpoint, data = {}) {
         try {
             const response = await fetch(`${this.baseUrl}${endpoint}`, {
@@ -105,9 +86,6 @@ class BaseApi {
         }
     }
 
-    /**
-     * Common DELETE request method
-     */
     async delete(endpoint) {
         try {
             const response = await fetch(`${this.baseUrl}${endpoint}`, {
