@@ -1,13 +1,6 @@
 import React from "react";
-import { motion } from "framer-motion";
-import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-} from "lucide-react";
+import {motion} from "framer-motion";
+import {Facebook, Instagram, Linkedin, Mail, MapPin, Phone,} from "lucide-react";
 
 const spring = {
   type: "spring",

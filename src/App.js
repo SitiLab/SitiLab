@@ -5,7 +5,6 @@ import Navbar from "./Navbar";
 import Services from "./Services";
 import ContactUs from "./ContactUs";
 import Footer from "./Footer";
-import ServiceModal from "./ServiceModal"; 
 
 const App = ({ props }) => {
     return (

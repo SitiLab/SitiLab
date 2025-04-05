@@ -1,7 +1,6 @@
-
 import React, {useEffect} from "react";
-import { X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import {X} from "lucide-react";
+import {AnimatePresence, motion} from "framer-motion";
 
 const spring = {
     type: "spring",

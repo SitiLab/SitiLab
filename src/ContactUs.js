@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from "react";
-import { Send, ArrowRight, ArrowLeft, Check, AlertCircle } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { contactApi } from "./api";
+import React, {useMemo, useState} from "react";
+import {AlertCircle, ArrowLeft, ArrowRight, Check, Send} from "lucide-react";
+import {AnimatePresence, motion} from "framer-motion";
+import {contactApi} from "./api";
 
 const spring = { type: "spring", stiffness: 400, damping: 30 };
 

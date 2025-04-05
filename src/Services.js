@@ -1,13 +1,6 @@
-import React, { useState } from "react";
-import {
-  Code,
-  Palette,
-  Globe,
-  ArrowRight,
-  Smartphone,
-  Rocket,
-} from "lucide-react";
-import { motion } from "framer-motion";
+import React, {useState} from "react";
+import {ArrowRight, Code, Globe, Palette, Rocket, Smartphone,} from "lucide-react";
+import {motion} from "framer-motion";
 import ServiceModal from "./ServiceModal";
 
 const spring = {

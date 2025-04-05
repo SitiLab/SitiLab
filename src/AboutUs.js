@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Users, Lightbulb, Code, Target, PlusCircle } from "lucide-react";
-import { motion } from "framer-motion";
-import { staffApi } from "./api";
+import React, {useEffect, useState} from "react";
+import {PlusCircle} from "lucide-react";
+import {motion} from "framer-motion";
+import {staffApi} from "./api";
 
 const spring = {
   type: "spring",

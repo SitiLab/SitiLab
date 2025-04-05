@@ -1,16 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  Code,
-  Palette,
-  Globe,
-  Users,
-  MessageSquare,
-  Phone,
-} from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, {useEffect, useState} from "react";
+import {ChevronDown, Code, Globe, Menu, MessageSquare, Palette, Phone, Users, X,} from "lucide-react";
+import {AnimatePresence, motion} from "framer-motion";
 
 const spring = {
   type: "spring",
